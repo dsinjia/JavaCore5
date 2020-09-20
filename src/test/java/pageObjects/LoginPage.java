@@ -18,11 +18,11 @@ public class LoginPage extends BasePage{
     }
 
     private WebElement getLoginButton(){
-        return driver.findElement(By.tagName("button"));
+        return driver.findElement(By.cssSelector("[type='submit']"));
     }
 
     public void open() {
-        driver.get("https://koelapp.testpro.io");
+        driver.get("https://staging.qliqsoft.com/");
     }
 
     public MainPage logIn(String email, String password) {

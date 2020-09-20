@@ -21,7 +21,7 @@ public class BaseTest {
         driver = BrowserFabric.getDriver(BrowserType.CHROME);
     }
     @AfterMethod
-    public void teatDown() throws InterruptedException {
+    public void tearDown() throws InterruptedException {
         Thread.sleep(5000);
         driver.quit();
     }

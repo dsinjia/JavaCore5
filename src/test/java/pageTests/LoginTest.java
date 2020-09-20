@@ -20,33 +20,7 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         MainPage mainPage = loginPage.logIn(username,"88888888");
         Assert.assertFalse(mainPage.isLogoutButton());
+
     }
-    @Test
-    public void loginTest1(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.open();
-        MainPage mainPage = loginPage.logIn(username,password);
-        Assert.assertTrue(mainPage.isLogoutButton());
-    }
-    @Test
-    public void wrongLoginTest1(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.open();
-        MainPage mainPage = loginPage.logIn(username,"88888888");
-        Assert.assertFalse(mainPage.isLogoutButton());
-    }
-    @Test
-    public void loginTest2(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.open();
-        MainPage mainPage = loginPage.logIn(username,password);
-        Assert.assertTrue(mainPage.isLogoutButton());
-    }
-    @Test
-    public void wrongLoginTest2(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.open();
-        MainPage mainPage = loginPage.logIn(username,"88888888");
-        Assert.assertFalse(mainPage.isLogoutButton());
-    }
+
 }

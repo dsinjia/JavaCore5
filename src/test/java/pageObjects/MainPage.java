@@ -11,15 +11,20 @@ public class MainPage extends BasePage{
         super(driver);
     }
 
+    private WebElement getConvButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@shape='talk-bubbles']/parent:: div")));
+        return driver.findElement(By.xpath("//*[@shape='talk-bubbles']/parent:: div"));
+    }
+
     private WebElement getPlusButton(){
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".fa-plus-circle")));
         return driver.findElement(By.cssSelector(".fa-plus-circle"));
     }
-    private WebElement getNewPlaylistField(){
+    private WebElement getNewPatientField(){
         return driver.findElement(By.xpath("//*[contains(@placeholder,'to save')]"));
     }
 
-    public String createPlaylist(String name){
+    public String createPatient(String name){
         for(int i=0; i<20; i++){
             try {
                 getPlusButton().click();
@@ -28,40 +33,40 @@ public class MainPage extends BasePage{
         }
 
 
-        getNewPlaylistField().sendKeys(name);
-        getNewPlaylistField().sendKeys(Keys.ENTER);
+        getNewPatientField().sendKeys(name);
+        getNewPatientField().sendKeys(Keys.ENTER);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='success show']")));
 
         return driver.getCurrentUrl().split("/")[5];
     }
 
-    public boolean isPlaylistExist(String playlistId, String name){
-        List<WebElement> list = driver.findElements(By.xpath("//*[@href='#!/playlist/"+playlistId+"']"));
+    public boolean isPatientExist(String patientId, String name){
+        List<WebElement> list = driver.findElements(By.xpath("//*[@href='#!/playlist/"+patientId+"']"));
         return list.size() > 0 && list.get(0).getText().equals(name);
     }
 
     public boolean isLogoutButton(){
         try{
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".logout")));
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[class='noty_message']")));
         } catch (TimeoutException err) {
             return false;
         }
         return true;
     }
 
-    public void renamePlaylist(String playlistId, String newName) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        WebElement playlist = driver.findElement(By.xpath("//*[@href='#!/playlist/"+playlistId+"']"));
-        jsExecutor.executeScript( "arguments[0].scrollIntoView();",playlist);
+//    public void renamePlaylist(String playlistId, String newName) {
+//        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+//        WebElement playlist = driver.findElement(By.xpath("//*[@href='#!/playlist/"+playlistId+"']"));
+//        jsExecutor.executeScript( "arguments[0].scrollIntoView();",playlist);
+//
+//        Actions actions = new Actions(driver);
+//        actions.doubleClick(playlist).perform();
+//
+//        WebElement editPlaylistField = driver.findElement(By.xpath("//*[@class='playlist playlist editing']/input"));
+//        editPlaylistField.sendKeys(Keys.CONTROL+"a");
+//        editPlaylistField.sendKeys(newName);
+//        editPlaylistField.sendKeys(Keys.ENTER);
 
-        Actions actions = new Actions(driver);
-        actions.doubleClick(playlist).perform();
-
-        WebElement editPlaylistField = driver.findElement(By.xpath("//*[@class='playlist playlist editing']/input"));
-        editPlaylistField.sendKeys(Keys.CONTROL+"a");
-        editPlaylistField.sendKeys(newName);
-        editPlaylistField.sendKeys(Keys.ENTER);
 
 
-    }
 }
