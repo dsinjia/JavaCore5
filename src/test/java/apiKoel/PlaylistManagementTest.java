@@ -1,5 +1,6 @@
 package apiKoel;
 
+import helper.Data;
 import helper.TestDataGenerator;
 import helper.TokenHelper;
 import io.restassured.path.json.JsonPath;
@@ -48,4 +49,19 @@ public class PlaylistManagementTest {
         Assert.assertEquals(createPlaylist.getName(),responsePlaylist.getName());
         playlistId=responsePlaylist.getId();
     }
+    // Test for delete all playlists
+//    @Test
+//    public void purge_AllPlayLists(){
+//        var data = Data.get();
+//        var playlists = data.getPlaylists();
+//        for(Playlist pl : playlists){
+//            given()
+//                    .baseUri("https://koelapp.testpro.io/")
+//                    .basePath("api/playlist"+pl.getId())
+//                    .header("Authorization",token)
+//                    .when()
+//                    .delete();
+//        }
+
+ //   }
 }
